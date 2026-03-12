@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaShaunda Gaffney — Mathematician</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f0e8;
+    --cream: #ede8da;
+    --gold: #b8933a;
+    --gold-light: #d4aa55;
+    --rust: #8b3a2a;
+    --sage: #4a5e4e;
+    --muted: #6b6455;
+    --line: rgba(13,13,13,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 3rem 6rem 8rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--ink);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero-divider {
+    width: 3rem;
+    height: 1px;
+    background: var(--gold);
+    margin: 2rem 0;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.65s forwards;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 380px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.95s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.25s;
+  }
+
+  .btn-primary:hover { background: var(--rust); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-math-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--cream);
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .hero-equations {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 3rem 4rem 5rem;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.8s forwards;
+  }
+
+  .eq-card {
+    background: rgba(245,240,232,0.7);
+    border: 1px solid var(--line);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .eq-card::before {
+    content: attr(data-label);
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+    background: var(--paper);
+    padding: 0 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .eq-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 6rem 8rem;
+    position: relative;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    margin-left: 1rem;
+  }
+
+  /* ── EDUCATION ── */
+  #education {
+    background: var(--cream);
+  }
+
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--line);
+  }
+
+  .edu-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .edu-card:hover { background: var(--paper); }
+
+  .edu-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .edu-card:hover::after { transform: scaleX(1); }
+
+  .edu-degree {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .edu-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .edu-detail {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .edu-highlight {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.3rem 0.7rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── RESEARCH ── */
+  #research {
+    background: var(--paper);
+  }
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .research-card {
+    padding: 2rem;
+    border: 1px solid var(--line);
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .research-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .research-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .research-area {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .research-topics {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── PUBLICATIONS ── */
+  #publications {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  #publications .section-title { color: var(--paper); }
+  #publications .section-line { background: rgba(245,240,232,0.15); }
+  #publications .section-number { color: var(--gold-light); }
+
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .pub-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+    transition: padding-left 0.3s;
+  }
+
+  .pub-item:hover { padding-left: 1rem; }
+
+  .pub-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    white-space: nowrap;
+    margin-top: 0.2rem;
+  }
+
+  .pub-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+  }
+
+  .pub-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(245,240,232,0.5);
+  }
+
+  .pub-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(245,240,232,0.2);
+  }
+
+  /* ── PRESENTATIONS ── */
+  .conf-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .conf-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(245,240,232,0.12);
+    transition: border-color 0.3s;
+  }
+
+  .conf-card:hover { border-color: var(--gold-light); }
+
+  .conf-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .conf-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .conf-venue {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.45);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── TEACHING ── */
+  #teaching {
+    background: var(--cream);
+  }
+
+  .teaching-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .teaching-intro {
+    position: sticky;
+    top: 8rem;
+  }
+
+  .teaching-intro p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-top: 1rem;
+  }
+
+  .course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .course-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding-left 0.3s;
+  }
+
+  .course-item:hover { padding-left: 1rem; }
+
+  .course-bullet {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .course-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .course-role {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  /* ── SKILLS ── */
+  #skills {
+    background: var(--paper);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--line);
+  }
+
+  .skill-block {
+    background: var(--paper);
+    padding: 2rem;
+  }
+
+  .skill-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-tag {
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--line);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+
+  .skill-tag:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  /* ── AWARDS ── */
+  #awards {
+    background: var(--cream);
+  }
+
+  .awards-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .award-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.8rem;
+    border: 1px solid var(--line);
+    transition: border-color 0.3s;
+  }
+
+  .award-item:hover { border-color: var(--gold); }
+
+  .award-marker {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+  }
+
+  .award-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .award-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 6rem 8rem;
+  }
+
+  .contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .contact-sub {
+    font-size: 1rem;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 3rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--paper);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    padding: 0.9rem 1.8rem;
+    border: 1px solid rgba(245,240,232,0.2);
+    transition: all 0.25s;
+  }
+
+  .contact-link:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  /* ── AFFILIATIONS STRIP ── */
+  .affiliation-strip {
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    padding: 2rem 8rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .affiliation-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .affiliation-tags {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .affiliation-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink);
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--line);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 1.2rem 2rem; }
+    section { padding: 5rem 2.5rem; }
+    .hero-left { padding: 6rem 2rem 6rem 3rem; }
+    .hero-equations { padding: 3rem 2rem; }
+    .edu-grid, .research-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .awards-list { grid-template-columns: 1fr; }
+    .conf-list { grid-template-columns: 1fr; }
+    .teaching-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .affiliation-strip { padding: 2rem; flex-wrap: wrap; }
+  }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .nav-links { display: none; }
+    .skills-grid { grid-template-columns: 1fr; }
+    #contact { padding: 5rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">LaShaunda Gaffney</span>
+  <ul class="nav-links">
+    <li><a href="#education">Education</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding: 0;">
+  <div class="hero-left">
+    <p class="hero-eyebrow">PhD Candidate in Mathematics</p>
+    <h1 class="hero-name">LaShaunda<br><em>Gaffney</em></h1>
+    <p class="hero-title">University of South Carolina, Columbia</p>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">Specializing in spectral methods, operator theory, and applied partial differential equations. Bridging pure mathematical analysis with computational methods.</p>
+    <div class="hero-cta">
+      <a href="#publications" class="btn-primary">View Research</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-math-bg"></div>
+    <div class="hero-equations">
+      <div class="eq-card" data-label="Dissertation Focus">
+        <div class="eq-text">∂u/∂t = L̂u + f(x,t)<br>‖T − λI‖ → σ(T) analysis</div>
+      </div>
+      <div class="eq-card" data-label="Research Domain">
+        <div class="eq-text">G = (V, E), λ₁(L_G) ≥ h²(G)/2<br>Alon–Milman spectral gap theorem</div>
+      </div>
+      <div class="eq-card" data-label="Methodology">
+        <div class="eq-text">∑ₙ aₙφₙ(x) → convergence<br>in weighted Sobolev spaces H^k(Ω)</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <span class="stat-num">4.0</span>
+          <span class="stat-label">GPA</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">2</span>
+          <span class="stat-label">Publications</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Conferences</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">4+</span>
+          <span class="stat-label">Years Teaching</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <span class="section-number">01</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid reveal">
+    <div class="edu-card">
+      <p class="edu-degree">Doctor of Philosophy</p>
+      <h3 class="edu-name">PhD in Mathematics</h3>
+      <p class="edu-year">2022 – Present</p>
+      <p class="edu-detail"><strong>Dissertation:</strong> Spectral Methods and Operator Theory in Applied Partial Differential Equations<br><br>Specializations in Analysis, Discrete Mathematics, and Applied Mathematics.</p>
+      <span class="edu-highlight">GPA: 4.0/4.0</span>
+    </div>
+    <div class="edu-card">
+      <p class="edu-degree">Master of Science</p>
+      <h3 class="edu-name">MS in Mathematics</h3>
+      <p class="edu-year">2020 – 2022</p>
+      <p class="edu-detail"><strong>Thesis:</strong> Discrete Optimization Techniques and Graph-Theoretic Approaches to Network Analysis<br><br>Coursework in Real Analysis, Functional Analysis, Graph Theory, Numerical Methods.</p>
+      <span class="edu-highlight">University of South Carolina</span>
+    </div>
+    <div class="edu-card">
+      <p class="edu-degree">Bachelor of Science</p>
+      <h3 class="edu-name">BS in Mathematics</h3>
+      <p class="edu-year">2016 – 2020</p>
+      <p class="edu-detail"><strong>Capstone:</strong> Applications of Fourier Analysis in Signal Processing<br><br>Minor in Computer Science. Graduated Summa Cum Laude. Dean's List all semesters.</p>
+      <span class="edu-highlight">Summa Cum Laude</span>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH INTERESTS -->
+<section id="research">
+  <div class="section-header reveal">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Research Interests</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="research-grid reveal">
+    <div class="research-card">
+      <div class="research-icon">∫</div>
+      <h3 class="research-area">Mathematical Analysis</h3>
+      <p class="research-topics">Functional analysis · Measure theory · Spectral theory · Operator algebras</p>
+    </div>
+    <div class="research-card">
+      <div class="research-icon">G</div>
+      <h3 class="research-area">Discrete Mathematics</h3>
+      <p class="research-topics">Combinatorics · Graph theory · Algorithms · Discrete optimization</p>
+    </div>
+    <div class="research-card">
+      <div class="research-icon">∇</div>
+      <h3 class="research-area">Applied Mathematics</h3>
+      <p class="research-topics">Differential equations · Numerical analysis · Mathematical modeling · Data-driven methods</p>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-header reveal">
+    <span class="section-number">03</span>
+    <h2 class="section-title">Publications</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="pub-list reveal">
+    <div class="pub-item">
+      <span class="pub-type">Journal</span>
+      <div>
+        <p class="pub-title">Convergence properties of iterative solvers for sparse linear systems</p>
+        <p class="pub-meta">Journal of Computational Mathematics, 42(3), 215–238</p>
+      </div>
+      <span class="pub-year">2024</span>
+    </div>
+    <div class="pub-item">
+      <span class="pub-type">Journal</span>
+      <div>
+        <p class="pub-title">Graph-theoretic models for epidemic spreading on heterogeneous networks</p>
+        <p class="pub-meta">Discrete Applied Mathematics, 310, 88–104</p>
+      </div>
+      <span class="pub-year">2023</span>
+    </div>
+  </div>
+
+  <div class="conf-list reveal">
+    <div class="conf-card">
+      <p class="conf-year">2024</p>
+      <p class="conf-title">"Spectral Gaps in Perturbed Discrete Laplacians"</p>
+      <p class="conf-venue">AMS Southeastern Sectional Meeting</p>
+    </div>
+    <div class="conf-card">
+      <p class="conf-year">2023</p>
+      <p class="conf-title">"Numerical Stability of Adaptive Mesh Refinement in PDE Solvers"</p>
+      <p class="conf-venue">SIAM Annual Meeting</p>
+    </div>
+    <div class="conf-card">
+      <p class="conf-year">2022</p>
+      <p class="conf-title">"Combinatorial Bounds on Random Graph Connectivity"</p>
+      <p class="conf-venue">Graduate Research Symposium, USC</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section id="teaching">
+  <div class="section-header reveal">
+    <span class="section-number">04</span>
+    <h2 class="section-title">Teaching</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="teaching-grid">
+    <div class="teaching-intro reveal">
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700;">Graduate Teaching Assistant</h3>
+      <p style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--gold); margin:0.5rem 0; letter-spacing:0.1em;">2020 – PRESENT</p>
+      <p>Dept. of Mathematics, University of South Carolina. Leading sections, designing course materials, and mentoring undergraduate students across multiple courses.</p>
+    </div>
+    <div class="course-list reveal">
+      <div class="course-item">
+        <div class="course-bullet"></div>
+        <div>
+          <p class="course-name">Calculus I, II & III</p>
+          <p class="course-role">Led recitation sections · held office hours · graded exams</p>
+        </div>
+      </div>
+      <div class="course-item">
+        <div class="course-bullet"></div>
+        <div>
+          <p class="course-name">Linear Algebra</p>
+          <p class="course-role">Delivered lectures · designed problem sets for 40+ students</p>
+        </div>
+      </div>
+      <div class="course-item">
+        <div class="course-bullet"></div>
+        <div>
+          <p class="course-name">Discrete Mathematics</p>
+          <p class="course-role">Developed course materials · conducted weekly tutorials</p>
+        </div>
+      </div>
+      <div class="course-item">
+        <div class="course-bullet"></div>
+        <div>
+          <p class="course-name">Introduction to Real Analysis</p>
+          <p class="course-role">Assisted with proof-writing workshops</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-number">05</span>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-block">
+      <p class="skill-category">Languages</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">MATLAB</span>
+        <span class="skill-tag">R</span>
+        <span class="skill-tag">LaTeX</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-category">Libraries</p>
+      <div class="skill-tags">
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">SciPy</span>
+        <span class="skill-tag">Matplotlib</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-category">Tools</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Mathematica</span>
+        <span class="skill-tag">Maple</span>
+        <span class="skill-tag">Jupyter</span>
+        <span class="skill-tag">Git</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-category">Methods</p>
+      <div class="skill-tags">
+        <span class="skill-tag">FEM</span>
+        <span class="skill-tag">Spectral Methods</span>
+        <span class="skill-tag">Monte Carlo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-header reveal">
+    <span class="section-number">06</span>
+    <h2 class="section-title">Awards & Fellowships</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="awards-list reveal">
+    <div class="award-item">
+      <div class="award-marker">★</div>
+      <div>
+        <p class="award-name">NSF Graduate Research Fellowship Program (GRFP)</p>
+        <p class="award-year">Honorable Mention · 2023</p>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-marker">◆</div>
+      <div>
+        <p class="award-name">USC Graduate School Fellowship</p>
+        <p class="award-year">2022 – 2023</p>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-marker">◆</div>
+      <div>
+        <p class="award-name">Outstanding Graduate Teaching Assistant Award</p>
+        <p class="award-year">USC Mathematics Department · 2022</p>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-marker">◆</div>
+      <div>
+        <p class="award-name">Dean's List — All Undergraduate Semesters</p>
+        <p class="award-year">2016 – 2020</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="contact-title">Let's <em>Connect</em></h2>
+  <p class="contact-sub">Orangeburg, SC 29118</p>
+  <div class="contact-links">
+    <a href="mailto:lashaundaguinyard036@gmail.com" class="contact-link">
+      ✉ lashaundaguinyard036@gmail.com
+    </a>
+    <a href="tel:+18033951458" class="contact-link">
+      ✆ +1 803 395 1458
+    </a>
+  </div>
+</section>
+
+<!-- AFFILIATIONS -->
+<div class="affiliation-strip">
+  <span class="affiliation-label">Member of</span>
+  <div class="affiliation-tags">
+    <span class="affiliation-tag">American Mathematical Society (AMS)</span>
+    <span class="affiliation-tag">Society for Industrial and Applied Mathematics (SIAM)</span>
+    <span class="affiliation-tag">Association for Women in Mathematics (AWM)</span>
+  </div>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
